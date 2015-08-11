@@ -74,7 +74,14 @@ Elm.Native.Http.make = function(localRuntime) {
 				req.overrideMimeType(settings.desiredResponseType._0);
 			}
 
-			req.send(request.body._0);
+			if (request.body.ctor === 'FormData')
+			{
+				req.send(request.body.formData);
+			}
+			else
+			{
+				req.send(request.body._0);
+			}
 		});
 	}
 
